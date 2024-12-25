@@ -1,4 +1,4 @@
-package de.makerhub.persistence;
+package de.makerhub.adapter.persistence;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface ModelRepository extends JpaRepository<Model, UUID> {}
+interface CollectionRepository extends JpaRepository<CollectionEntity, UUID> {
+}

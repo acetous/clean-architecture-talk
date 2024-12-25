@@ -1,8 +1,9 @@
-package de.makerhub.persistence;
+package de.makerhub.adapter.persistence;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
 import java.util.List;
@@ -10,11 +11,13 @@ import java.util.UUID;
 
 @Entity
 @Data
-public class Account {
+class CollectionEntity {
     @Id
     private UUID uuid;
-    private String username;
-
+    private String name;
+    @ManyToOne
+    private AccountEntity account;
     @ManyToMany
-    private List<Model> printedModels;
+    private List<ModelEntity> models;
 }
+

@@ -1,5 +1,7 @@
-package de.makerhub;
+package de.makerhub.application;
 
+import de.makerhub.persistence.Account;
+import de.makerhub.persistence.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

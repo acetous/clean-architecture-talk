@@ -1,6 +1,6 @@
-package de.makerhub.usecase;
+package de.makerhub.application.port.in;
 
-import de.makerhub.domain.model.Model;
+import de.makerhub.domain.Model;
 
 import java.util.UUID;
 

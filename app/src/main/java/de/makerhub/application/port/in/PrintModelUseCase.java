@@ -1,4 +1,4 @@
-package de.makerhub.usecase;
+package de.makerhub.application.port.in;
 
 import java.util.UUID;
 

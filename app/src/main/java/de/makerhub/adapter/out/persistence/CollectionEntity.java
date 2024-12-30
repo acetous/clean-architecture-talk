@@ -1,4 +1,4 @@
-package de.makerhub.adapter.persistence;
+package de.makerhub.adapter.out.persistence;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

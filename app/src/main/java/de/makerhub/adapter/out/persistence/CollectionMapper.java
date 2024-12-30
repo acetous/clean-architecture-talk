@@ -1,6 +1,6 @@
-package de.makerhub.adapter.persistence;
+package de.makerhub.adapter.out.persistence;
 
-import de.makerhub.domain.model.Collection;
+import de.makerhub.domain.Collection;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

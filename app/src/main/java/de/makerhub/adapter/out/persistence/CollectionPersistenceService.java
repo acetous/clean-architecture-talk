@@ -1,8 +1,8 @@
-package de.makerhub.adapter.persistence;
+package de.makerhub.adapter.out.persistence;
 
-import de.makerhub.domain.model.Collection;
-import de.makerhub.port.LoadCollectionPort;
-import de.makerhub.port.UpdateCollectionPort;
+import de.makerhub.domain.Collection;
+import de.makerhub.application.port.out.LoadCollectionPort;
+import de.makerhub.application.port.out.UpdateCollectionPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

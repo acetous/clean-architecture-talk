@@ -1,11 +1,11 @@
-package de.makerhub.domain;
+package de.makerhub.application;
 
-import de.makerhub.domain.model.Collection;
-import de.makerhub.domain.model.Model;
-import de.makerhub.port.LoadCollectionPort;
-import de.makerhub.port.LoadModelPort;
-import de.makerhub.port.UpdateCollectionPort;
-import de.makerhub.usecase.AddModelToCollectionUseCase;
+import de.makerhub.domain.Collection;
+import de.makerhub.domain.Model;
+import de.makerhub.application.port.out.LoadCollectionPort;
+import de.makerhub.application.port.out.LoadModelPort;
+import de.makerhub.application.port.out.UpdateCollectionPort;
+import de.makerhub.application.port.in.AddModelToCollectionUseCase;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

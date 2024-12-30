@@ -1,4 +1,4 @@
-package de.makerhub.adapter.restapi;
+package de.makerhub.adapter.in.restapi;
 
 import java.util.UUID;
 

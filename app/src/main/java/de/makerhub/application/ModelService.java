@@ -1,10 +1,10 @@
-package de.makerhub.domain;
+package de.makerhub.application;
 
-import de.makerhub.domain.model.Model;
-import de.makerhub.port.LoadModelPort;
-import de.makerhub.port.UpdateModelPort;
-import de.makerhub.usecase.PrintModelUseCase;
-import de.makerhub.usecase.ViewModelUseCase;
+import de.makerhub.domain.Model;
+import de.makerhub.application.port.out.LoadModelPort;
+import de.makerhub.application.port.out.UpdateModelPort;
+import de.makerhub.application.port.in.PrintModelUseCase;
+import de.makerhub.application.port.in.ViewModelUseCase;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;

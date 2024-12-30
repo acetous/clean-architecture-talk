@@ -1,8 +1,8 @@
-package de.makerhub.adapter.persistence;
+package de.makerhub.adapter.out.persistence;
 
-import de.makerhub.domain.model.Model;
-import de.makerhub.port.LoadModelPort;
-import de.makerhub.port.UpdateModelPort;
+import de.makerhub.domain.Model;
+import de.makerhub.application.port.out.LoadModelPort;
+import de.makerhub.application.port.out.UpdateModelPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

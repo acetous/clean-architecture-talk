@@ -1,9 +1,9 @@
-package de.makerhub.adapter.restapi;
+package de.makerhub.adapter.in.restapi;
 
-import de.makerhub.domain.model.Model;
-import de.makerhub.usecase.AddModelToCollectionUseCase;
-import de.makerhub.usecase.PrintModelUseCase;
-import de.makerhub.usecase.ViewModelUseCase;
+import de.makerhub.domain.Model;
+import de.makerhub.application.port.in.AddModelToCollectionUseCase;
+import de.makerhub.application.port.in.PrintModelUseCase;
+import de.makerhub.application.port.in.ViewModelUseCase;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

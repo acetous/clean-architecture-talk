@@ -1,6 +1,6 @@
-package de.makerhub.port;
+package de.makerhub.application.port.out;
 
-import de.makerhub.domain.model.Model;
+import de.makerhub.domain.Model;
 
 import java.util.UUID;
 

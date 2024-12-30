@@ -1,4 +1,4 @@
-package de.makerhub.domain.model;
+package de.makerhub.domain;
 
 import java.util.UUID;
 

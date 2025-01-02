@@ -1,8 +1,8 @@
 package de.makerhub.adapter.out.persistence;
 
-import de.makerhub.domain.Collection;
 import de.makerhub.application.port.out.LoadCollectionPort;
-import de.makerhub.application.port.out.UpdateCollectionPort;
+import de.makerhub.application.port.out.SaveCollectionPort;
+import de.makerhub.domain.Collection;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class CollectionPersistenceService implements LoadCollectionPort, UpdateCollectionPort {
+public class CollectionPersistenceService implements LoadCollectionPort, SaveCollectionPort {
 
     private final CollectionRepository collectionRepository;
     private final CollectionMapper collectionMapper;
@@ -22,7 +22,12 @@ public class CollectionPersistenceService implements LoadCollectionPort, UpdateC
     }
 
     @Override
-    public void save(Collection collection) {
+    public void create(Collection collection) {
+        update(collection);
+    }
+
+    @Override
+    public void update(Collection collection) {
         collectionRepository.save(collectionMapper.toEntity(collection));
     }
 }

@@ -1,11 +1,11 @@
 package de.makerhub.application;
 
-import de.makerhub.domain.Collection;
-import de.makerhub.domain.Model;
+import de.makerhub.application.port.in.AddModelToCollectionUseCase;
 import de.makerhub.application.port.out.LoadCollectionPort;
 import de.makerhub.application.port.out.LoadModelPort;
-import de.makerhub.application.port.out.UpdateCollectionPort;
-import de.makerhub.application.port.in.AddModelToCollectionUseCase;
+import de.makerhub.application.port.out.SaveCollectionPort;
+import de.makerhub.domain.Collection;
+import de.makerhub.domain.Model;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,10 +15,10 @@ import java.util.UUID;
 class CollectionService implements AddModelToCollectionUseCase {
 
     private final LoadCollectionPort loadCollectionPort;
-    private final UpdateCollectionPort updateCollectionPort;
+    private final SaveCollectionPort updateCollectionPort;
     private final LoadModelPort loadModelPort;
 
-    CollectionService(LoadCollectionPort loadCollectionPort, UpdateCollectionPort updateCollectionPort, LoadModelPort loadModelPort) {
+    CollectionService(LoadCollectionPort loadCollectionPort, SaveCollectionPort updateCollectionPort, LoadModelPort loadModelPort) {
         this.loadCollectionPort = loadCollectionPort;
         this.updateCollectionPort = updateCollectionPort;
         this.loadModelPort = loadModelPort;
@@ -39,6 +39,6 @@ class CollectionService implements AddModelToCollectionUseCase {
                 modelList
         );
 
-        updateCollectionPort.save(updatedCollection);
+        updateCollectionPort.update(updatedCollection);
     }
 }

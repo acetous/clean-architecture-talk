@@ -5,7 +5,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import lombok.Data;
 
-import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -16,5 +16,5 @@ class AccountEntity {
     private String username;
 
     @ManyToMany
-    private List<ModelEntity> printedModels;
+    private Set<ModelEntity> printedModels;
 }

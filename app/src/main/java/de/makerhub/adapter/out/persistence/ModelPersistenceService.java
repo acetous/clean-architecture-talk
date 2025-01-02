@@ -1,8 +1,8 @@
 package de.makerhub.adapter.out.persistence;
 
-import de.makerhub.domain.Model;
 import de.makerhub.application.port.out.LoadModelPort;
-import de.makerhub.application.port.out.UpdateModelPort;
+import de.makerhub.application.port.out.SaveModelPort;
+import de.makerhub.domain.Model;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-class ModelPersistenceService implements LoadModelPort, UpdateModelPort {
+class ModelPersistenceService implements LoadModelPort, SaveModelPort {
 
     private final ModelRepository modelRepository;
     private final ModelMapper modelMapper;
@@ -22,7 +22,12 @@ class ModelPersistenceService implements LoadModelPort, UpdateModelPort {
     }
 
     @Override
-    public void updateModel(Model model) {
+    public void create(Model model) {
+        update(model);
+    }
+
+    @Override
+    public void update(Model model) {
         modelRepository.save(modelMapper.toEntity(model));
     }
 }

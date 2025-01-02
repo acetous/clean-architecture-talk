@@ -1,36 +1,36 @@
 package de.makerhub;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 @RequiredArgsConstructor
-@Controller
-@Transactional
+@RestController
 public class ModelController {
 
     private final ModelRepository modelRepository;
     private final CollectionRepository collectionRepository;
     private final LoginService loginService;
+    private final UserRepository userRepository;
 
     @GetMapping("/model/{uuid}")
     public Model getModel(@PathVariable UUID uuid) {
         return modelRepository.findById(uuid).orElseThrow(ResouceNotFoundException::new);
     }
 
-    @PostMapping("/model/{uuid}/print")
+    @GetMapping("/model/{uuid}/print")
     public byte[] printModel(@PathVariable UUID uuid) {
         Model model = modelRepository.findById(uuid).orElseThrow(ResouceNotFoundException::new);
         model.setPrintCount(model.getPrintCount() + 1);
 
         Account currentAccount = loginService.getCurrentUser();
+        if (null == currentAccount.getPrintedModels()) {
+            currentAccount.setPrintedModels(new ArrayList<>());
+        }
         currentAccount.getPrintedModels().add(model);
+        userRepository.save(currentAccount);
 
         return model.getStlData();
     }

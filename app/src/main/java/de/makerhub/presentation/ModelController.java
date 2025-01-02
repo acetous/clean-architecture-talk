@@ -3,19 +3,13 @@ package de.makerhub.presentation;
 import de.makerhub.application.CollectionService;
 import de.makerhub.application.ModelService;
 import de.makerhub.persistence.Model;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
 @RequiredArgsConstructor
-@Controller
-@Transactional
+@RestController
 public class ModelController {
 
     private final ModelService modelService;
@@ -26,9 +20,9 @@ public class ModelController {
         return modelService.getModel(uuid);
     }
 
-    @PostMapping("/model/{uuid}/print")
+    @GetMapping("/model/{uuid}/print")
     public byte[] printModel(@PathVariable UUID uuid) {
-        return modelService.getModelPrintData(uuid);
+        return modelService.printModel(uuid);
     }
 
     @PostMapping("/collection/{uuid}")

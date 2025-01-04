@@ -22,7 +22,7 @@ class CollectionMapper {
 
     public CollectionEntity toEntity(Collection collection) {
         CollectionEntity entity = new CollectionEntity();
-        entity.setUuid(collection.uuid());
+        entity.setUuid(collection.id());
         entity.setName(collection.name());
         entity.setAccount(accountMapper.toEntity(collection.account()));
         entity.setModels(collection.models().stream().map(modelMapper::toEntity).toList());

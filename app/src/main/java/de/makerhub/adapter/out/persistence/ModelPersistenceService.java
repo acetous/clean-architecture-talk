@@ -17,7 +17,7 @@ class ModelPersistenceService implements LoadModelPort, SaveModelPort {
 
     @Override
     public Model loadByUuid(UUID modelUuid) {
-        ModelEntity entity = modelRepository.findById(modelUuid).orElseThrow(ResouceNotFoundException::new);
+        ModelEntity entity = modelRepository.findById(modelUuid).orElseThrow();
         return modelMapper.toModel(entity);
     }
 

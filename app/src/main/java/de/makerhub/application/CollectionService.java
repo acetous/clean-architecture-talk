@@ -33,7 +33,7 @@ class CollectionService implements AddModelToCollectionUseCase {
         modelList.add(model);
 
         Collection updatedCollection = new Collection(
-                collection.uuid(),
+                collection.id(),
                 collection.name(),
                 collection.account(),
                 modelList

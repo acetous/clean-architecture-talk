@@ -1,4 +1,4 @@
-package de.makerhub.adapter.in.restapi;
+package de.makerhub.adapter.in.web;
 
 import de.makerhub.application.port.in.AddModelToCollectionUseCase;
 import de.makerhub.application.port.in.PrintModelUseCase;
@@ -13,7 +13,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @RestController
 @Transactional
-public class ModelController {
+class ModelController {
 
     private final PrintModelUseCase printModelUseCase;
     private final ViewModelUseCase viewModelUseCase;
@@ -22,7 +22,7 @@ public class ModelController {
     @GetMapping("/model/{uuid}")
     public ModelJson getModel(@PathVariable UUID uuid) {
         Model model = viewModelUseCase.loadModel(uuid);
-        return new ModelJson(model.uuid(), model.name(), model.description(), model.stlData(), model.printCount());
+        return new ModelJson(model.id(), model.name(), model.description(), model.stlData(), model.printCount());
     }
 
     @GetMapping("/model/{uuid}/print")

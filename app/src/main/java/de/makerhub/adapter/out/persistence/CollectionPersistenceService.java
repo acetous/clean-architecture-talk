@@ -17,7 +17,7 @@ public class CollectionPersistenceService implements LoadCollectionPort, SaveCol
 
     @Override
     public Collection loadByUuid(UUID collectionUuid) {
-        CollectionEntity collectionEntity = collectionRepository.findById(collectionUuid).orElseThrow(ResouceNotFoundException::new);
+        CollectionEntity collectionEntity = collectionRepository.findById(collectionUuid).orElseThrow();
         return collectionMapper.toCollection(collectionEntity);
     }
 

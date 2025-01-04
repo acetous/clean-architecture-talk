@@ -18,7 +18,7 @@ class ModelMapper {
 
     public ModelEntity toEntity(Model model) {
         ModelEntity entity = new ModelEntity();
-        entity.setUuid(model.uuid());
+        entity.setUuid(model.id());
         entity.setName(model.name());
         entity.setDescription(model.description());
         entity.setStlData(model.stlData());

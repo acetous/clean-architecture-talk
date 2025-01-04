@@ -1,4 +1,4 @@
-package de.makerhub;
+package de.makerhub.adapter.in.web;
 
 import de.makerhub.application.port.out.CurrentUserPort;
 import de.makerhub.application.port.out.LoadAccountPort;
@@ -28,7 +28,7 @@ public class ModelControllerTest {
     private TestRestTemplate client;
     
     @Autowired
-    private SaveModelPort updateModelPort;
+    private SaveModelPort saveModelPort;
 
     @Autowired
     private SaveAccountPort updateAccountPort;
@@ -42,7 +42,7 @@ public class ModelControllerTest {
     @Test
     public void getModelData() {
         Model savedModel = createModel();
-        ResponseEntity<Model> response = client.getForEntity("/model/{uuid}", Model.class, savedModel.uuid());
+        ResponseEntity<ModelJson> response = client.getForEntity("/model/{uuid}", ModelJson.class, savedModel.id());
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(response.getBody()).usingRecursiveComparison().isEqualTo(savedModel);
@@ -53,7 +53,7 @@ public class ModelControllerTest {
         Account loggedInUser = createAccout();
         when(currentUserPortMock.getCurrentUser()).thenReturn(loggedInUser);
         Model savedModel = createModel();
-        ResponseEntity<byte[]> response = client.getForEntity("/model/{uuid}/print",  byte[].class, savedModel.uuid());
+        ResponseEntity<byte[]> response = client.getForEntity("/model/{uuid}/print", byte[].class, savedModel.id());
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(response.getBody()).isEqualTo(savedModel.stlData());
@@ -65,11 +65,11 @@ public class ModelControllerTest {
         when(currentUserPortMock.getCurrentUser()).thenReturn(loggedInUser);
         Model savedModel = createModel();
 
-        client.getForEntity("/model/{uuid}/print",  byte[].class, savedModel.uuid());
-        client.getForEntity("/model/{uuid}/print",  byte[].class, savedModel.uuid());
-        client.getForEntity("/model/{uuid}/print",  byte[].class, savedModel.uuid());
+        client.getForEntity("/model/{uuid}/print", byte[].class, savedModel.id());
+        client.getForEntity("/model/{uuid}/print", byte[].class, savedModel.id());
+        client.getForEntity("/model/{uuid}/print", byte[].class, savedModel.id());
 
-        ResponseEntity<Model> response = client.getForEntity("/model/{uuid}", Model.class, savedModel.uuid());
+        ResponseEntity<Model> response = client.getForEntity("/model/{uuid}", Model.class, savedModel.id());
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(response.getBody().printCount()).isEqualTo(3);
@@ -80,12 +80,12 @@ public class ModelControllerTest {
         Account loggedInUser = createAccout();
         when(currentUserPortMock.getCurrentUser()).thenReturn(loggedInUser);
         Model savedModel = createModel();
-        ResponseEntity<byte[]> response = client.getForEntity("/model/{uuid}/print",  byte[].class, savedModel.uuid());
+        ResponseEntity<byte[]> response = client.getForEntity("/model/{uuid}/print", byte[].class, savedModel.id());
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(loadAccountPort.getById(loggedInUser.id()).printedModels())
-                .extracting(Model::uuid)
-                .contains(savedModel.uuid());
+                .extracting(Model::id)
+                .contains(savedModel.id());
     }
 
     private Account createAccout() {
@@ -106,7 +106,7 @@ public class ModelControllerTest {
                 "stldata".getBytes(StandardCharsets.UTF_8),
                 0L
         );
-        updateModelPort.create(model);
+        saveModelPort.create(model);
         return model;
     }
 }

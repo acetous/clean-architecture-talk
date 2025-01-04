@@ -17,7 +17,7 @@ class AccountPersistenceService implements LoadAccountPort, SaveAccountPort {
 
     @Override
     public Account getById(UUID accountUuid) {
-        AccountEntity accountEntity = accountRepository.findByUuidFetchModels(accountUuid).orElseThrow(ResouceNotFoundException::new);
+        AccountEntity accountEntity = accountRepository.findByUuidFetchModels(accountUuid).orElseThrow();
         return accountMapper.toAccount(accountEntity);
     }
 
